@@ -1,0 +1,12 @@
+os: linux
+services:
+  - docker
+
+jobs:
+  include:
+    - name: phoenix
+      before_script:
+        - docker load -i image.tar
+      script:
+        - docker run -d --rm hero:prod
+        - while true; do echo -n "Progress "; date; sleep 10; done
